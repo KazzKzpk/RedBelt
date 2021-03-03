@@ -1,0 +1,86 @@
+<html>
+    <body>
+        <include src="Global/Assets.html.twig"></include>
+
+        <div class="page-wrapper">
+            <!-- BEGIN CONTAINER -->
+            <div class="page-container">
+                <!-- BEGIN SIDEBAR -->
+                <include src="Global/Menu/Sidebar.html.twig"></include>
+
+                <!-- BEGIN CONTENT -->
+                <div class="page-content-wrapper">
+                    <!-- BEGIN CONTENT BODY -->
+                    <div class="page-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- BEGIN SAMPLE TABLE PORTLET-->
+                                <div class="portlet light bordered">
+                                    <div class="portlet-title">
+                                        <div class="caption">
+                                            <i class="icon-settings font-green"></i>
+                                            {% if user.userId > 0 %}
+                                                <span class="caption-subject font-green bold uppercase">Editar Usuário</span>
+                                            {% else %}
+                                                <span class="caption-subject font-green bold uppercase">Adicionar Usuário</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="portlet-body">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-2 form-padding">
+                                                    <label>Identificador</label>
+                                                    <input type="text" class="form-control" placeholder="" value="{{ user.userId }}" disabled>
+                                                </div>
+                                                <div class="col-md-2 form-padding">
+                                                    <label>Nome</label>
+                                                    <input data-input="user-name" type="text" class="form-control" placeholder="Fulano" maxlength="128" value="{{ user.name }}">
+                                                </div>
+                                                <div class="col-md-2 form-padding">
+                                                    <label>Email</label>
+                                                    <input data-input="user-email" type="text" class="form-control" placeholder="email@example.com" value="{{ user.email }}" maxlength="128" {% if user.userId > 0 %}disabled{% endif %}>
+                                                </div>
+                                                <div class="col-md-2 form-padding">
+                                                    <label>Telefone</label>
+                                                    <input data-input="user-phone" type="text" class="form-control" value="{{ user.phone }}">
+                                                </div>
+                                                <div class="col-md-2 form-padding">
+                                                    <label>CPF</label>
+                                                    <input data-input="user-cpf" type="text" class="form-control" value="{{ user.cpf }}" {% if user.userId > 0 %}disabled{% endif %}>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-6" style="text-align: left">
+                                                <button data-url="/user" type="button" class="btn">Voltar</button>
+                                            </div>
+                                            <div class="col-md-6" style="text-align: right">
+                                                <div class="btn-group btn-group-solid">
+                                                    {% if user.userId > 0 %}
+                                                        <button data-button="user-remove" type="button" class="btn btn-danger">Remover</button>
+                                                    {% endif %}
+                                                    <button data-button="user-add" type="button" class="btn btn-success">Salvar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END SAMPLE TABLE PORTLET-->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END PAGE BAR -->
+                </div>
+            </div>
+            <!-- END CONTENT -->
+        </div>
+        <!-- END CONTAINER -->
+        <!-- BEGIN FOOTER -->
+        <include src="Global/Menu/Footer.html.twig"></include>
+        <!-- END FOOTER -->
+        </div>
+    </body>
+</html>
