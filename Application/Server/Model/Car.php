@@ -7,9 +7,9 @@ namespace Application\Server\Model
     /**
      * Class User
      * @package Application\Server\Model
-     * @table user
+     * @table car
      */
-    class User extends \Model
+    class Car extends \Model
     {
         /**
          * @type int
@@ -17,31 +17,25 @@ namespace Application\Server\Model
          * @define autoIncrement
          * @define cantUpdate
          */
-        public $userId;
+        public $carId;
+
+        /**
+         * @type int
+         * @define isNullable
+         */
+        public $brandId;
 
         /**
          * @type varchar(128)
          * @define isNullable
          */
-        public $name;
+        public $model;
 
         /**
-         * @type varchar(128)
+         * @type varchar(4)
          * @define isNullable
          */
-        public $email;
-
-        /**
-         * @type varchar(15)
-         * @define isNullable
-         */
-        public $phone;
-
-        /**
-         * @type varchar(14)
-         * @define isNullable
-         */
-        public $cpf;
+        public $year;
 
         /**
          * @type bool
@@ -61,13 +55,13 @@ namespace Application\Server\Model
          */
         public $dateUpdate;
 
-        public static function getByUserId(int $userId)
+        public static function getByCarId(int $carId)
         {
-            if ($userId <= 0)
+            if ($carId <= 0)
                 return null;
 
             $result = self::selectAll() ->
-                whereEquals ('userId', $userId) ->
+                whereEquals ('carId', $carId) ->
                 limit(1)->
                 result();
 
@@ -75,41 +69,10 @@ namespace Application\Server\Model
                 ? null : $result[0];
         }
 
-        public static function getByCPF(string $cpf)
+        public static function getAll(int $limit = null)
         {
-            if ($cpf->isEmpty())
-                return null;
-
-            $cpf = \Identification\BRA\CPF::getMasked($cpf);
-
-            $result = self::selectAll() ->
-                whereEquals ('cpf', $cpf) ->
-                whereEquals ('deleted', false) ->
-                limit(1)->
-                result();
-
-            return ($result === null)
-                ? null : $result[0];
-        }
-
-        public static function getByEmail(string $email)
-        {
-            if ($email->isEmpty())
-                return null;
-
-            $result = self::selectAll() ->
-                whereEquals ('email', $email) ->
-                whereEquals ('deleted', false) ->
-                limit(1)->
-                result();
-
-            return ($result === null)
-                ? null : $result[0];
-        }
-
-        public static function getAll(int $limit = \intEx::LIMIT)
-        {
-            if ($limit <= 0) $limit = 1;
+            if ($limit <= 0)
+                $limit = \intEx::LIMIT;
 
             $result = self::selectAll() ->
                 whereEquals ('deleted', 'false')->
@@ -133,8 +96,8 @@ namespace Application\Server\Model
             if (!$model->containsField('date') || $model->date === null) {
                 $model->date = null;
 
-                if ($model->containsField('userId') && $model->userId !== null && $model->userId > 0) {
-                    $data           = self::getByUserId($model->userId);
+                if ($model->containsField('carId') && $model->carId !== null && $model->carId > 0) {
+                    $data           = self::getByCarId($model->carId);
                     $model->date    = $data->date;
                 }
 

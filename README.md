@@ -13,17 +13,15 @@
 - O migration é automático no primeiro acesso
 
 #### Host
-- Necessário Apache
-- PHP 5.6-7.4 (recomendado 7.4)
+- Apache
+- PHP 7.4
 - Mod Rewrite ativado
-- Permissão de escrita na pasta /Application/ (chmod 777 em unix)
+- Redis
 
 ### Teste
-- CRUD simples para adicionar/remover/atualizar/deletar usuário
-- Usuário contém nome, email, telefone e CPF
-- Email e CPF são chaves primárias
-- Telefone e CPF são mascarados
-- Tempo total de desenvolvimento: 70 minutos
+- CRUD simples para adicionar/remover/atualizar/deletar carro
+- Carro contém marca, modelo e ano
+- Marcas são de um fork do banco de dados FIPE (em .json)
 
 # Acesso
 - http://localhost
@@ -33,26 +31,26 @@
 - Ex: form-data, x-www-form-urlencoded ou raw (JSON, YAML, XML).
 - O backend automaticamente entende o tipo de dado e converte. 
 
-#### Listar todos usuários
-- http://localhost/api/user
+#### Listar todos carros
+- http://localhost/api/car
 - Método: GET
 
-#### Adicionar usuário
-- http://localhost/api/user/add
+#### Adicionar carro
+- http://localhost/api/car/add
 - Método: GET
-- Objeto: {name: 'Fulano', email: 'email@example.com', phone: '11982543321', cpf: '17223248211'}
+- Objeto: {brandId: 1, model: 'Civic', year: 2000}
 
-#### Retornar usuário específico
-- http://localhost/api/user/:id (ex: http://localhost/api/user/1)
+#### Retornar carro específico
+- http://localhost/api/car/{id} (ex: http://localhost/api/car/1)
 - Método: GET
 
-#### Atualizar usuário específico
-- http://localhost/api/user/:id (ex: http://localhost/api/user/1)
+#### Atualizar carro específico
+- http://localhost/api/car/{id} (ex: http://localhost/api/car/1)
 - Método: POST
-- Objeto: {name: 'Fulano', phone: '11982390991'}
+- Objeto: {brandId: 1, model: 'Civic', year: 2000}
 
-#### Remover usuário específico
-- http://localhost/api/user/:id (ex: http://localhost/api/user/1)
+#### Remover carro específico
+- http://localhost/api/car/{id} (ex: http://localhost/api/car/1)
 - Método: DELETE
 
 # Detalhes

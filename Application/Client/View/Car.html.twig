@@ -1,9 +1,11 @@
 <html>
     <body>
         <include src="Global/Assets.html.twig"></include>
+        <include src="Car/Edit.html.twig"></include>
+
+        <div data-wrapper="car-modal"></div>
 
         <div class="page-wrapper">
-
             <!-- BEGIN CONTAINER -->
             <div class="page-container">
                 <!-- BEGIN SIDEBAR -->
@@ -21,7 +23,7 @@
                                     <div class="portlet-title">
                                         <div class="caption">
                                             <i class="icon-social-dribbble font-green"></i>
-                                            <span class="caption-subject font-green bold uppercase">Usuários</span>
+                                            <span class="caption-subject font-green bold uppercase">Carros</span>
                                         </div>
                                     </div>
                                     <div class="portlet-body">
@@ -30,31 +32,42 @@
                                                 <div class="table-scrollable">
                                                     <table class="table table-hover table-striped">
                                                         <thead>
-                                                        <th style="">Nome</th>
-                                                        <th style="">Email</th>
-                                                        <th style="">Telefone</th>
-                                                        <th style="">CPF</th>
+                                                            <th></th>
+                                                            <th>Marca</th>
+                                                            <th>Modelo</th>
+                                                            <th>Ano</th>
                                                         </thead>
-                                                        <tbody>
-                                                            {% for user in users %}
-                                                                <tr data-userid="{{ user.userId }}">
-                                                                    <td>{{ user.name }}</td>
-                                                                    <td>{{ user.email }}</td>
-                                                                    <td>{{ user.phone }}</td>
-                                                                    <td>{{ user.cpf }}</td>
+                                                        <tbody data-wrapper="car">
+                                                            {% for car in cars %}
+                                                                <tr data-carid="{{ car.carId }}" class="row-animation">
+                                                                    <td data-wrapper="car-carid">#{{ car.carId }}</td>
+                                                                    <td data-wrapper="car-brand">{{ car.brand }}</td>
+                                                                    <td data-wrapper="car-model">{{ car.model }}</td>
+                                                                    <td data-wrapper="car-year">{{ car.year }}</td>
                                                                     <td style="text-align: center;">
-                                                                        <button class="btn" style="width: 100%;" data-url="/user/{{ user.userId }}/edit">Editar</button>
+                                                                        <button data-button="car-edit" data-carid="{{ car.carId }}" class="btn" style="width: 100%;">Editar</button>
                                                                     </td>
                                                                 </tr>
                                                             {% endfor %}
                                                         </tbody>
                                                     </table>
+                                                    {% template car %}
+                                                        <tr data-carid="{{ car.carId }}" class="row-animation">
+                                                            <td data-wrapper="car-carid">#{{ car.carId }}</td>
+                                                            <td data-wrapper="car-brand">{{ car.brand }}</td>
+                                                            <td data-wrapper="car-model">{{ car.model }}</td>
+                                                            <td data-wrapper="car-year">{{ car.year }}</td>
+                                                            <td style="text-align: center;">
+                                                                <button data-button="car-edit" data-carid="{{ car.carId }}" class="btn" style="width: 100%;">Editar</button>
+                                                            </td>
+                                                        </tr>
+                                                    {% endtemplate %}
                                                 </div>
                                             </div>
                                         </div>
                                         <br>
                                         <div style="text-align: right">
-                                            <button data-url="/user/add" type="button" class="btn btn-success">Adicionar</button>
+                                            <button data-button="car-add" type="button" class="btn btn-success">Adicionar</button>
                                         </div>
                                     </div>
                                     <!-- END SAMPLE TABLE PORTLET-->

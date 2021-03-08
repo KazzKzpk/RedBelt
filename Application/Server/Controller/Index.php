@@ -6,7 +6,7 @@ namespace Application\Server\Controller
     {
         public static function onRequest($input)
         {
-            return \Header::redirect('/user');
+            return \Header::redirect('/car');
         }
     }
 }

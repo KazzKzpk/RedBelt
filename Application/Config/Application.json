@@ -15,11 +15,11 @@
   },
   "database": {
     "cache": {
-      "file": true,
-      "redis": false
+      "file": false,
+      "redis": true
     },
     "driver": "mysqli",
-    "host": "localhost",
+    "host": "db",
     "migration": true,
     "password": "root",
     "sid": "test",
@@ -59,13 +59,13 @@
     "gzip": true
   },
   "redis": {
-    "host": "localhost",
+    "host": "redis",
     "port": "6379"
   },
   "render": {
     "cache": {
-      "file": true,
-      "redis": false
+      "file": false,
+      "redis": true
     }
   },
   "server": {

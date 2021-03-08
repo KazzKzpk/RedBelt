@@ -1,8 +1,8 @@
 <?php
 
-namespace Application\Server\Controller\API\User
+namespace Application\Server\Controller\API\Fipe\Brand
 {
-    use Application\Server\Model;
+    use Application\Server\Component;
 
     class GetAll extends \Controller
     {
@@ -12,10 +12,7 @@ namespace Application\Server\Controller\API\User
             if (\Connection::getRequestMethod() !== 'get')
                 return self::error('INVALID_METHOD', ['message' => 'Only GET method available.']);
 
-            $users = Model\User::getAll();
-            $users = (($users === null) ? Arr() : $users->toArr(true));
-
-            return self::success(['users' => $users]);
+            return self::success(['brands' => Component\Fipe::getBrands()]);
         }
     }
 }

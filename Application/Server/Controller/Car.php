@@ -4,17 +4,17 @@ namespace Application\Server\Controller
 {
     use Application\Server\Controller;
 
-    class User extends \Controller
+    class Car extends \Controller
     {
         public static function onRequest($input)
         {
-            return self::success(['users' => Controller\API\User\GetAll::execute()->users]);
+            return self::success(['cars' => Controller\API\Car\GetAll::execute()->cars]);
         }
 
         public static function onRender($response)
         {
             $render = new \Render\Front();
-            $render->addViewFromPath('view://User.html.twig');
+            $render->addViewFromPath('view://Car.html.twig');
             return $render;
         }
     }

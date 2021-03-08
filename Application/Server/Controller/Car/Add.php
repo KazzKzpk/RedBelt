@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Server\Controller\User
+namespace Application\Server\Controller\Car
 {
     class Add extends \Controller
     {
@@ -12,7 +12,7 @@ namespace Application\Server\Controller\User
         public static function onRender($response)
         {
             $render = new \Render\Front();
-            $render->addViewFromPath('view://User/Edit.html.twig');
+            $render->addViewFromPath('view://Car/Edit.html.twig');
             return $render;
         }
     }

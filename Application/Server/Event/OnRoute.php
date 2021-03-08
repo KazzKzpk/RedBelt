@@ -8,14 +8,13 @@ namespace Application\Server\Event
         {
             $router = new \Router();
 
-            $router->add('/',                         'Application/Server/Controller/Index');
-            $router->add('/user',                     'Application/Server/Controller/User');
-            $router->add('/user/add',                 'Application/Server/Controller/User/Add');
-            $router->add('/user/{{ userId }}/edit',   'Application/Server/Controller/User/Edit');
+            $router->add('/',                       'Application/Server/Controller/Index');
+            $router->add('/car',                    'Application/Server/Controller/Car');
 
-            $router->add('/api/user/add',             'Application/Server/Controller/API/User/Add');
-            $router->add('/api/user/{{ userId }}',    'Application/Server/Controller/API/User/UpdateByUserId');
-            $router->add('/api/user',                 'Application/Server/Controller/API/User/GetAll');
+            $router->add('/api/car/brand',          'Application/Server/Controller/API/Fipe/Brand/GetAll');
+            $router->add('/api/car/add',            'Application/Server/Controller/API/Car/Add');
+            $router->add('/api/car/{{ carId }}',    'Application/Server/Controller/API/Car/UpdateByCarId');
+            $router->add('/api/car',                'Application/Server/Controller/API/Car/GetAll');
 
             return $router;
         }

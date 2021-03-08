@@ -1,30 +1,30 @@
 <?php
 
-namespace Application\Server\Controller\User
+namespace Application\Server\Controller\Car
 {
     use Application\Server\Model;
 
     class Edit extends \Controller
     {
         protected static function onInput($type) { return [
-            'userId' => int
+            'carId' => int
         ]; }
 
         public static function onRequest($input)
         {
             $input = $input->get;
 
-            $user = Model\User::getByUserId($input->userId);
-            if ($user === null || $user->deleted === true)
-                return \Header::redirect('/user');
+            $car = Model\Car::getByCarId($input->carId);
+            if ($car === null || $car->deleted === true)
+                return \Header::redirect('/car');
 
-            return self::success(['user' => $user->toArr()]);
+            return self::success(['car' => $car->toArr()]);
         }
 
         public static function onRender($response)
         {
             $render = new \Render\Front();
-            $render->addViewFromPath('view://User/Edit.html.twig');
+            $render->addViewFromPath('view://Car/Edit.html.twig');
             return $render;
         }
     }
